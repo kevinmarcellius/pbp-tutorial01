@@ -7,13 +7,16 @@ from wishlist.views import show_json_by_id
 from wishlist.views import show_xml_by_id
 from wishlist.views import register
 from wishlist.views import login_user
-from wishlist.views import logout_user 
+from wishlist.views import logout_user, show_ajax, add_wishlist
+
 
 app_name = 'wishlist'
 
 urlpatterns = [
     path('', show_wishlist, name='show_wishlist'), 
     path('xml/', show_xml, name='show_xml'),
+    path('ajax/', show_ajax, name='show_ajax'),
+    path('ajax/submit/', add_wishlist, name='add_wishlist'),
     path('json/', show_json, name='show_json'),
     path('json/<int:id>', show_json_by_id, name='show_json_by_id'),
     path('xml/<int:id>', show_xml_by_id, name='show_xml_by_id'),

@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+{% endblock meta %}
+{% block content %}
+<h5>Nama: </h5>
+<p>{{nama}}</p>
+<nav class="navbar navbar-expand-lg bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Kevin Marcellius Alrino</a>
+
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="logout">
+            <button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<table>
+    <tr>
+    <th>Nama Barang</th>
+    <th>Harga Barang</th>
+    <th>Deskripsi</th>
+    </tr>
+    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
+    {% for barang in list_barang %}
+    <tr>
+        <th>{{barang.nama_barang}}</th>
+        <th>{{barang.harga_barang}}</th>
+        <th>{{barang.deskripsi}}</th>
+    </tr>
+{% endfor %}
+</table>
+<h5 class="mt-4">Tambah Barang</h5>
+  <form method="POST" action="">
+    {% csrf_token %}
+    <table>
+      <tr>
+          <td>Nama Barang: </td>
+          <td><input type="text" name="nama_barang" placeholder="Nama Barang" class="form-control" id="input_nama"></td>
+      </tr>
+      <tr>
+          <td>Harga Barang: </td>
+          <td><input type="text" name="harga_barang" placeholder="Harga Barang" class="form-control" id="input_harga"></td>
+      </tr>
+      <tr>
+          <td>Deskripsi: </td>
+          <td><input type="text" name="deskripsi" placeholder="Deskripsi" class="form-control" id="input_deskripsi"></td>
+      </tr>
+      </table>
+    </form>
+    <button id="add_wishlist" >Tambah</button>
+
+
+<h5>Sesi terakhir login: {{ last_login }}</h5>
+
+</script>
+{% endblock content %}
